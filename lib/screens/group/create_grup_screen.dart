@@ -44,7 +44,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
         _searchResults = results;
       });
     } catch (e) {
-      print('[v0] Erro ao buscar usuários: $e');
+      print('Erro ao buscar usuários: $e');
     }
   }
 
