@@ -1,0 +1,44 @@
+name: whatsapp_clone
+description: Aplicativo de chat em tempo real usando Flutter e Supabase
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Supabase
+  supabase_flutter: ^2.0.0
+
+  # State Management
+  provider: ^6.1.1
+
+  # UI Components
+  cached_network_image: ^3.3.0
+  image_picker: ^1.0.5
+  file_picker: ^6.1.1
+
+  # Utilities
+  timeago: ^3.6.0
+  intl: ^0.18.1
+  uuid: ^4.2.1
+
+  # Icons
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Adicione assets se necessário
+  # assets:
+  #   - images/
+  #   - assets/
