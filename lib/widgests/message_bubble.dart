@@ -37,10 +37,11 @@ class MessageBubble extends StatelessWidget {
               backgroundImage: message.senderAvatar != null
                   ? NetworkImage(message.senderAvatar!)
                   : null,
+              backgroundColor: const Color(0xFF8B5CF6),
               child: message.senderAvatar == null
                   ? Text(
                       message.senderName?[0].toUpperCase() ?? '?',
-                      style: const TextStyle(fontSize: 12),
+                      style: const TextStyle(fontSize: 12, color: Colors.white),
                     )
                   : null,
             ),
@@ -62,15 +63,27 @@ class MessageBubble extends StatelessWidget {
                       vertical: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: isMe
-                          ? Theme.of(context).primaryColor
-                          : Colors.grey[300],
+                      gradient: isMe
+                          ? const LinearGradient(
+                              colors: [Color(0xFF0EA5E9), Color(0xFF06B6D4)],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            )
+                          : null,
+                      color: isMe ? null : Colors.grey[200],
                       borderRadius: BorderRadius.only(
                         topLeft: const Radius.circular(16),
                         topRight: const Radius.circular(16),
                         bottomLeft: Radius.circular(isMe ? 16 : 4),
                         bottomRight: Radius.circular(isMe ? 4 : 16),
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +96,9 @@ class MessageBubble extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
-                                color: isMe ? Colors.white70 : Colors.grey[700],
+                                color: isMe
+                                    ? Colors.white.withOpacity(0.9)
+                                    : const Color(0xFF8B5CF6),
                               ),
                             ),
                           ),
@@ -116,7 +131,9 @@ class MessageBubble extends StatelessWidget {
                                   locale: 'pt_BR'),
                               style: TextStyle(
                                 fontSize: 11,
-                                color: isMe ? Colors.white70 : Colors.grey[600],
+                                color: isMe
+                                    ? Colors.white.withOpacity(0.8)
+                                    : Colors.grey[600],
                               ),
                             ),
                             if (message.isEdited) ...[
@@ -126,8 +143,9 @@ class MessageBubble extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 11,
                                   fontStyle: FontStyle.italic,
-                                  color:
-                                      isMe ? Colors.white70 : Colors.grey[600],
+                                  color: isMe
+                                      ? Colors.white.withOpacity(0.8)
+                                      : Colors.grey[600],
                                 ),
                               ),
                             ],
@@ -233,7 +251,14 @@ class MessageBubble extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey[300]!),
+        border: Border.all(color: const Color(0xFF0EA5E9).withOpacity(0.3)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

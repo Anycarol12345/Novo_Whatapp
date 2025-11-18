@@ -42,55 +42,79 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF075E54), // Verde WhatsApp
+            seedColor: const Color(0xFF0EA5E9), // Vibrant sky blue
+            primary: const Color(0xFF0EA5E9),
+            secondary: const Color(0xFF06B6D4), // Cyan accent
+            tertiary: const Color(0xFF8B5CF6), // Soft purple
             brightness: Brightness.light,
           ),
           useMaterial3: true,
           appBarTheme: const AppBarTheme(
             centerTitle: false,
-            elevation: 1,
-            backgroundColor: Color(0xFF075E54),
+            elevation: 0,
+            backgroundColor: Color(0xFF0EA5E9),
             foregroundColor: Colors.white,
           ),
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: Color(0xFF25D366), // Verde claro WhatsApp
+            backgroundColor: Color(0xFF06B6D4),
+            foregroundColor: Colors.white,
           ),
           inputDecorationTheme: InputDecorationTheme(
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
             ),
             filled: true,
             fillColor: Colors.grey[100],
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFF0EA5E9), width: 2),
+            ),
           ),
           cardTheme: CardThemeData(
-            elevation: 1,
+            elevation: 2,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
         ),
         darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF075E54),
+            seedColor: const Color(0xFF0EA5E9),
+            primary: const Color(0xFF0EA5E9),
+            secondary: const Color(0xFF06B6D4),
+            tertiary: const Color(0xFF8B5CF6),
             brightness: Brightness.dark,
+            surface: const Color(0xFF1E293B),
+            background: const Color(0xFF0F172A),
           ),
           useMaterial3: true,
-          scaffoldBackgroundColor:
-              const Color(0xFF111B21), // Fundo escuro WhatsApp
+          scaffoldBackgroundColor: const Color(0xFF0F172A),
           appBarTheme: const AppBarTheme(
             centerTitle: false,
-            elevation: 1,
-            backgroundColor: Color(0xFF1F2C34),
+            elevation: 0,
+            backgroundColor: Color(0xFF1E293B),
             foregroundColor: Colors.white,
           ),
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: Color(0xFF25D366),
+            backgroundColor: Color(0xFF06B6D4),
+            foregroundColor: Colors.white,
           ),
           cardTheme: CardThemeData(
-            elevation: 1,
-            color: const Color(0xFF1F2C34),
+            elevation: 2,
+            color: const Color(0xFF1E293B),
             shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
+            ),
+            filled: true,
+            fillColor: const Color(0xFF334155),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color(0xFF0EA5E9), width: 2),
             ),
           ),
         ),

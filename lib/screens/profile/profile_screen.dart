@@ -16,6 +16,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late TextEditingController _statusController;
   bool _showOnlineStatus = true;
 
+  Future<void> _pickAndUploadImage() async {
+    // Implement the logic to pick an image and upload it
+    // For example, you can use the image_picker package to pick an image
+    // and then upload it to your server or storage.
+    try {
+      // Example: Picking an image (you need to add the image_picker package)
+      // final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+      // if (pickedFile != null) {
+      //   // Upload the image
+      //   final success = await context.read<AuthProvider>().uploadAvatar(pickedFile.path);
+      //   if (success) {
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       const SnackBar(content: Text('Avatar atualizado com sucesso')),
+      //     );
+      //   } else {
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       const SnackBar(content: Text('Erro ao atualizar avatar')),
+      //     );
+      //   }
+      // }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro ao selecionar imagem: $e')),
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -103,13 +130,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Positioned(
                           right: 0,
                           bottom: 0,
-                          child: CircleAvatar(
-                            radius: 18,
-                            backgroundColor: Theme.of(context).primaryColor,
-                            child: const Icon(
-                              Icons.camera_alt,
-                              size: 20,
-                              color: Colors.white,
+                          child: GestureDetector(
+                            onTap:
+                                _pickAndUploadImage, // <-- Função para selecionar e fazer upload
+                            child: CircleAvatar(
+                              radius: 18,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              child: const Icon(
+                                Icons.camera_alt,
+                                size: 20,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

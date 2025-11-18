@@ -233,11 +233,15 @@ class ChatService {
       final userId = _supabase.auth.currentUser?.id;
       if (userId == null) throw Exception('Usuário não autenticado');
 
+      print('[v0] Buscando usuários com query: $query');
+
       final response = await _supabase
           .from('profiles')
           .select('id, username, full_name, avatar_url, status, is_online')
           .or('username.ilike.%$query%,full_name.ilike.%$query%')
           .limit(20);
+
+      print('[v0] Resultados da busca: ${(response as List).length}');
 
       // Filtrar o usuário atual do resultado
       return (response as List)
@@ -246,6 +250,36 @@ class ChatService {
           .toList();
     } catch (e) {
       print('[v0] Erro ao buscar usuários: $e');
+      rethrow;
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getAllUsers() async {
+    try {
+      final userId = _supabase.auth.currentUser?.id;
+      if (userId == null) throw Exception('Usuário não autenticado');
+
+      print('[v0] Buscando todos os usuários...');
+
+      final response = await _supabase
+          .from('profiles')
+          .select('id, username, full_name, avatar_url, status, is_online')
+          .order('username')
+          .limit(100);
+
+      print('[v0] Total de perfis encontrados: ${(response as List).length}');
+
+      // Filtrar o usuário atual do resultado
+      final filtered = (response as List)
+          .cast<Map<String, dynamic>>()
+          .where((profile) => profile['id'] != userId)
+          .toList();
+
+      print('[v0] Usuários após filtrar atual: ${filtered.length}');
+
+      return filtered;
+    } catch (e) {
+      print('[v0] Erro ao buscar todos os usuários: $e');
       rethrow;
     }
   }

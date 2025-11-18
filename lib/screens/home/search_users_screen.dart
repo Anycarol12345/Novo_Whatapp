@@ -19,17 +19,44 @@ class _SearchUsersScreenState extends State<SearchUsersScreen> {
   bool _hasSearched = false;
 
   @override
+  void initState() {
+    super.initState();
+    _loadAllUsers();
+  }
+
+  @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
   }
 
+  Future<void> _loadAllUsers() async {
+    setState(() {
+      _isSearching = true;
+    });
+
+    try {
+      final results = await _chatService.getAllUsers();
+      setState(() {
+        _searchResults = results;
+        _hasSearched = true;
+      });
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Erro ao carregar usuários: $e')),
+        );
+      }
+    } finally {
+      setState(() {
+        _isSearching = false;
+      });
+    }
+  }
+
   Future<void> _performSearch(String query) async {
     if (query.trim().isEmpty) {
-      setState(() {
-        _searchResults = [];
-        _hasSearched = false;
-      });
+      _loadAllUsers();
       return;
     }
 
